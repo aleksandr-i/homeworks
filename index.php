@@ -1,2 +1,4 @@
 <?php
-echo __DIR__;
+define('DS', DIRECTORY_SEPARATOR);
+define('ROOT', __DIR__ . DS);
+echo ROOT;
