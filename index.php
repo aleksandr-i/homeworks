@@ -24,31 +24,42 @@ function __autoload($className)
     }
     else
     {
-        die("{$file} not found");
+        throw new Exception("{$file} not found", 500);
     }
 }
 
-$request = new Request();
-$route = $request->get('route'); //$_GET ['route']
+try {
+    $request = new Request();
+    $route = $request->get('route'); //$_GET ['route']
 
-if (is_null($route))
-{
-    $route = 'index/index';
+    if (is_null($route)) {
+        $route = 'index/index';
+    }
+
+    $route = explode('/', $route);
+
+    if ($route[0] == '' or $route[1] == ''){
+        $route[0] = 'index';
+        $route[1] = 'index';
+    }
+
+    $controller = ucfirst($route[0]) . 'Controller';
+    $action = $route[1] . 'Action';
+
+    $controller = new $controller();
+
+    if (!method_exists($controller, $action)) {
+        throw new Exception ("{$action} not found", 500);
+    }
+
+    $content = $controller->$action($request);
+
+} catch (NotFoundException $e) {
+    // you can make it different
+    $content = Controller::renderError($e->getMessage(), $e->getCode());
+} catch (Exception $e) {
+    $content = Controller::renderError($e->getMessage(), $e->getCode());
 }
-
-$route = explode('/', $route);
-
-$controller = ucfirst($route[0]) . 'Controller';
-$action = $route[1] . 'Action';
-
-$controller = new $controller();
-
-if (!method_exists($controller, $action))
-{
-    die("{$action} not found");
-}
-
-$content = $controller->$action($request);
 
 require VIEW_DIR . 'default_layout.phtml';
 
