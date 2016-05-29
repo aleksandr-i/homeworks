@@ -29,6 +29,7 @@ function __autoload($className)
 }
 
 try {
+
     $request = new Request();
     $route = $request->get('route'); //$_GET ['route']
 
@@ -54,6 +55,8 @@ try {
 
     $content = $controller->$action($request);
 
+} catch (PDOException $e) {
+    $content = Controller::renderError($e->getMessage(), $e->getCode());
 } catch (NotFoundException $e) {
     // you can make it different
     $content = Controller::renderError($e->getMessage(), $e->getCode());
