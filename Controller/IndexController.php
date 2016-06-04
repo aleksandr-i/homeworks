@@ -14,23 +14,21 @@ class IndexController extends Controller
 
     public function contactAction(Request $request)
     {
-        $flashMessage = $request->get('flash'); // $_GET['flash']
         $form = new ContactForm($request);
 
         if ($request->isPost()) {
             if ($form->isValid()) {
-                $flashMessage = 'Success';
+                Session::setFlash('Success');
 
                 // todo: function redirect($to)
-                Router::redirect('/index.php?route=index/contact&flash=' . $flashMessage);
+                Router::redirect('/index.php?route=index/contact');
             }
 
-            $flashMessage = 'Error';
+            Session::setFlash('Error');
         }
 
         $args = array(
-            'form' => $form,
-            'flashMessage' => $flashMessage,
+            'form' => $form
         );
 
         return $this->render('contact', $args);

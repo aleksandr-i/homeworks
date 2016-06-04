@@ -13,8 +13,11 @@ class DbConnection
 
     private function __construct()
     {
-        $this->pdo = new PDO('mysql: host=localhost; dbname=mvc_app', 'root');
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // like; mysql; host=localhost; dbname=mvc
+        $dsn = 'mysql: host=' . Config::get('host') . '; dbname=' . Config::get('dbname');
+
+        $this->pdo = new PDO($dsn, Config::get('user'), Config::get('pass'));
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
     }
 
     private function __clone(){}
