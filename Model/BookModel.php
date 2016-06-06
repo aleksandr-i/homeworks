@@ -5,7 +5,14 @@ class BookModel
     public function find($id)
     {
         $db = DbConnection::getInstance()->getPdo();
-        $sth = $db->query('SELECT * FROM book WHERE status = 1 and id ='.$id);
+        $sth = $db->prepare(
+            'SELECT b.id, b.title, b.description, b.price, GROUP_CONCAT(a.name ORDER BY a.name SEPARATOR\', \') AS \'author\'
+             FROM book b JOIN book_author ba ON b.id = ba.book_id JOIN author a ON a.id = ba.author_id
+             WHERE b.id = :number GROUP BY b.id');
+        $sth->execute(array(
+            'number' => $id
+        ));
+
         $books = $sth->fetch(PDO::FETCH_ASSOC);
 
         if (!$books){
@@ -18,7 +25,10 @@ class BookModel
     public function findAll()
     {
         $db = DbConnection::getInstance()->getPdo();
-        $sth = $db->query('SELECT * FROM book WHERE status = 1 ORDER BY price DESC');
+        $sth = $db->query(
+            'SELECT b.id, b.title, b.description, b.price, GROUP_CONCAT(a.name ORDER BY a.name SEPARATOR\', \') AS \'author\' 
+             FROM book b JOIN book_author ba ON b.id = ba.book_id JOIN author a ON a.id = ba.author_id 
+             WHERE status = 1 GROUP BY b.id ORDER BY price DESC');
         $books = $sth->fetchAll(PDO::FETCH_ASSOC);
 
         if (!$books){
