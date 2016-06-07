@@ -1,6 +1,6 @@
 <?php
 
-class Session
+abstract class Session
 {
     /**
      * @param $key
