@@ -1,6 +1,6 @@
 <?php
 define('DS', DIRECTORY_SEPARATOR);
-define('ROOT', __DIR__ . DS);
+define('ROOT', __DIR__ . DS . '..'. DS);
 define('VIEW_DIR', ROOT . 'View' . DS);
 define('LIB_DIR', ROOT . 'Library' . DS);
 define('CONTROLLER_DIR', ROOT . 'Controller' . DS);
@@ -34,23 +34,14 @@ try {
 
     Config::setFromXML('db.xml');
     Config::setFromXML('main.xml');
-
+    
+    Router::init('routes.php');
+    
     $request = new Request();
-    $route = $request->get('route'); //$_GET ['route']
-
-    if (is_null($route)) {
-        $route = 'index/index';
-    }
-
-    $route = explode('/', $route);
-
-    if ($route[0] == '' or $route[1] == ''){
-        $route[0] = 'index';
-        $route[1] = 'index';
-    }
-
-    $controller = ucfirst($route[0]) . 'Controller';
-    $action = $route[1] . 'Action';
+    Router::match($request);
+    
+    $controller = Router::$controller;
+    $action = Router::$action;
 
     $controller = new $controller();
 
