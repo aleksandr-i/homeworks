@@ -19,6 +19,8 @@ class BookController extends Controller
         $id = $request->get('id'); // $_GET['id]
         $bookModel = new BookModel();
         $book = $bookModel->find($id);
+
+        MetaHelper::addTitle($book['title']);
         
         $args = array(
             'book' => $book,

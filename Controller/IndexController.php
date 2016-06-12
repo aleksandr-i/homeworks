@@ -15,6 +15,7 @@ class IndexController extends Controller
     public function contactAction(Request $request)
     {
         $form = new ContactForm($request);
+        MetaHelper::addTitle('Contact');
 
         if ($request->isPost()) {
             if ($form->isValid()) {
