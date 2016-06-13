@@ -38,8 +38,47 @@ class BookModel
         return $books;
     }
 
+    public function findAllAdmin()
+    {
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->query(
+            'SELECT id, title, price FROM book');
+        $books = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$books){
+            throw new NotFoundException('Books not found');
+        }
+
+        return $books;
+    }
+
     public function count()
     {
         // select count(*) from books
+    }
+
+    public function remove($id)
+    {
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->prepare(
+            'DELETE FROM book WHERE id = :number');
+        $sth->execute(array(
+            'number' => $id
+        ));
+    }
+
+    public function viewFeedback()
+    {
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->query(
+            'SELECT * FROM feedback'
+        );
+        $feedback = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$feedback){
+            throw new NotFoundException('Feedback not found');
+        }
+
+        return $feedback;
     }
 }

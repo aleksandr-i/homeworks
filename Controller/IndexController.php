@@ -15,6 +15,7 @@ class IndexController extends Controller
     public function contactAction(Request $request)
     {
         $form = new ContactForm($request);
+        MetaHelper::addTitle('Contact');
 
         if ($request->isPost()) {
             if ($form->isValid()) {
@@ -32,7 +33,7 @@ class IndexController extends Controller
                 Session::setFlash('Success');
 
                 // todo: function redirect($to)
-                Router::redirect('/index.php?route=index/contact');
+                Router::redirect('/contact-us');
             }
             Session::setFlash('Error');
 

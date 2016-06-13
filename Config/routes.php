@@ -8,9 +8,12 @@ return array(
     'contact_us' => new Route('/contact-us', 'Index', 'contact'),
     'login' => new Route('/login', 'Security', 'login'),
     'logout' => new Route('/logout', 'Security', 'logout'),
+    
 
     // admin routes
     'admin_default' => new Route('/admin', 'AdminIndex', 'index'),
     'admin_books_list' => new Route('/admin/books', 'AdminBook', 'index'),
+    'admin_books_remove' => new Route('/admin/book/remove/{id}', 'AdminBook', 'remove', array('id' => '[0-9]+')),
+    'admin_feedback' => new Route('/admin/feedback', 'AdminFeedback', 'index'),
 
 );

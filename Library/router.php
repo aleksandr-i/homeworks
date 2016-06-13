@@ -16,22 +16,27 @@ abstract class Router
      * @param $uri
      * @return bool
      */
+    
     private static function isAdminUri($uri)
     {
         return strpos($uri, '/admin') === 0;
     }
+    
     /**
      * @param Request $request
      * @throws \Exception
      */
+    
     public static function match(Request $request)
     {
         // вытаскиваем УРЛ без параметров
         $uri = $request->getURI();
+        
         // если видим, что урл админский
         if (self::isAdminUri($uri)) {
             Controller::setAdminLayout();
         }
+        
         // перебор элементов массива из routes.php для сопоставления с $uri
         foreach (self::$map as $route) {
             // заготовка для регулярки
@@ -61,15 +66,18 @@ abstract class Router
             throw new Exception('Route not found: ' . $uri, 404);
         }
     }
+    
     /**
      * @param $to
      */
+    
     public static function redirect($to)
     {
         header('Location: ' . $to);
         die;
     }
-    public static function getRouteUri($routeName, array $params = array())
-    {
+    
+    public static function getRouteUri($routeName, array $params = array()){
+        
     }
 }

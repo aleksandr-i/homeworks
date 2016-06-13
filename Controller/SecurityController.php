@@ -18,9 +18,9 @@ class SecurityController extends Controller
                 
                 Session::setFlash('User not found');
                 Router::redirect('/login');
-            } else{
-                Session::setFlash('Fill the fields');
             }
+
+            Session::setFlash('Fill the fields');
         }
 
         return $this->render('login', array('form' => $form));
@@ -31,18 +31,5 @@ class SecurityController extends Controller
         Session::remove('user');
         Router::redirect('/');
     }
-
-    public function testAction(Request $request)
-    {
-        if (!Session::has('user')){
-            Router::redirect('/');
-        }
-
-        echo 'secure';
-    }
-
-    public function registerAction(Request $request)
-    {
-        return $this->render('register');
-    }
+    
 }

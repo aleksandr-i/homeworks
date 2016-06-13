@@ -13,6 +13,6 @@ class UserModel
         
         $user = $sth->fetch(PDO::FETCH_ASSOC);
         
-        return $user;
+        return $user; 
     }
 }
