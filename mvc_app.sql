@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июн 07 2016 г., 14:45
+-- Время создания: Июн 13 2016 г., 16:47
 -- Версия сервера: 10.1.10-MariaDB
 -- Версия PHP: 5.6.19
 
@@ -186,8 +186,7 @@ INSERT INTO `book` (`id`, `title`, `description`, `price`, `status`, `style_id`)
 (97, 'turpis a pede posuere nonummy', 'aliquet massa id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia sapien quis libero', '699.01', 1, 5),
 (98, 'nam ultrices libero non mattis pulvinar nulla pede', 'accumsan tellus nisi eu orci mauris lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis', '390.78', 1, 4),
 (99, 'vel enim sit amet nunc viverra', 'luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin', '858.70', 1, 3),
-(100, 'risus dapibus augue vel accumsan tellus nisi eu orci', 'cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean', '285.59', 1, 1),
-(101, 'enim in tempor turpis nec', 'in felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi', '139.80', 0, 7);
+(100, 'risus dapibus augue vel accumsan tellus nisi eu orci', 'cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean', '285.59', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -697,15 +696,7 @@ INSERT INTO `book_author` (`id`, `book_id`, `author_id`) VALUES
 (119, 100, 5),
 (285, 100, 8),
 (417, 100, 11),
-(454, 100, 11),
-(262, 101, 5),
-(204, 101, 9),
-(246, 101, 12),
-(309, 101, 12),
-(134, 101, 18),
-(372, 101, 18),
-(351, 101, 26),
-(138, 101, 29);
+(454, 100, 11);
 
 -- --------------------------------------------------------
 
@@ -732,7 +723,11 @@ INSERT INTO `feedback` (`id`, `username`, `email`, `message`, `created`, `ip_adr
 (3, 'alexandr', 'alexandr-i@i.ua', 'test', '2016-05-31 13:31:33', 'http://site2/index.php?route=index/contact'),
 (4, 'alexandr', 'alexandr-i@i.ua', 'test ip_adress', '2016-05-31 13:34:15', '127.0.0.1'),
 (5, 'alexandr', 'alexandr-i@i.ua', 'gfhfg', '2016-06-06 16:39:30', '127.0.0.1'),
-(6, 'alexandr', 'alexandr-i@i.ua', 'fgdfg', '2016-06-06 16:46:58', '127.0.0.1');
+(6, 'alexandr', 'alexandr-i@i.ua', 'fgdfg', '2016-06-06 16:46:58', '127.0.0.1'),
+(7, 'alexandr', 'alexandr-i@i.ua', 'This is a test message', '2016-06-13 14:16:45', '127.0.0.1'),
+(8, 'alexandr', 'alexandr-i@i.ua', 'sdfsd', '2016-06-13 14:18:34', '127.0.0.1'),
+(9, 'alexandr', 'admin@mvc.com', 'This is a new test contact form', '2016-06-13 14:21:43', '127.0.0.1'),
+(10, 'alexandr', 'alexandr-i@i.ua', 'test', '2016-06-13 14:52:45', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -775,6 +770,7 @@ INSERT INTO `style` (`id`, `name`) VALUES
 CREATE TABLE `user` (
   `id` int(10) UNSIGNED NOT NULL,
   `email` varchar(60) NOT NULL,
+  `username` varchar(60) NOT NULL,
   `password` char(32) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -783,9 +779,10 @@ CREATE TABLE `user` (
 -- Дамп данных таблицы `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `password`, `status`) VALUES
-(1, 'admin@mvc.com', '1d43a95f76d1da7b3c39597ecf00121e', 1),
-(2, 'qwerty@mvc.com', 'cd1356fb884979945ffaa9d8437d354c', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `status`) VALUES
+(1, 'admin@mvc.com', 'admin', '1d43a95f76d1da7b3c39597ecf00121e', 1),
+(2, 'qwerty@mvc.com', 'qwerty', 'cd1356fb884979945ffaa9d8437d354c', 1),
+(3, 'alexandr-i@i.ua', 'Alexandr', '497740d0602268282a136310c5fda2a3', 1);
 
 --
 -- Индексы сохранённых таблиц
@@ -844,7 +841,7 @@ ALTER TABLE `author`
 -- AUTO_INCREMENT для таблицы `book`
 --
 ALTER TABLE `book`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 --
 -- AUTO_INCREMENT для таблицы `book_author`
 --
@@ -854,7 +851,7 @@ ALTER TABLE `book_author`
 -- AUTO_INCREMENT для таблицы `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT для таблицы `style`
 --
@@ -864,7 +861,7 @@ ALTER TABLE `style`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --

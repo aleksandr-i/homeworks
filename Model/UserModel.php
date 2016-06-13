@@ -10,9 +10,9 @@ class UserModel
            'email'=> $email,
            'password' => $password,
         ));
-        
+
         $user = $sth->fetch(PDO::FETCH_ASSOC);
-        
-        return $user; 
+
+        return $user;
     }
 }

@@ -8,6 +8,7 @@ return array(
     'contact_us' => new Route('/contact-us', 'Index', 'contact'),
     'login' => new Route('/login', 'Security', 'login'),
     'logout' => new Route('/logout', 'Security', 'logout'),
+    'register' => new Route('/register', 'Security', 'register'),
     
 
     // admin routes

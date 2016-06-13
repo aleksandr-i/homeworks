@@ -1,8 +1,9 @@
 <h1>Register new user</h1>
+<?=Session::getFlash()?>
 <form method="post">
     Email: <input type="email" name="email"> <br><br>
     Username: <input type="text" name="username"> <br><br>
     Password: <input type="password" name="password"> <br><br>
-    Confirm password: <input type="password" name="passwordConfirm"> <br><br>
+    Confirm password: <input type="password" name="confirmPassword"> <br><br>
     <input type="submit">
 </form>
