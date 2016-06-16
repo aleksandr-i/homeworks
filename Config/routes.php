@@ -16,5 +16,6 @@ return array(
     'admin_books_list' => new Route('/admin/books', 'AdminBook', 'index'),
     'admin_books_remove' => new Route('/admin/book/remove/{id}', 'AdminBook', 'remove', array('id' => '[0-9]+')),
     'admin_feedback' => new Route('/admin/feedback', 'AdminFeedback', 'index'),
+    'admin_books_edit' => new Route('/admin/book/edit/{id}', 'AdminBook', 'edit', array('id' => '[0-9]+')),
 
 );

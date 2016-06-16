@@ -1,0 +1,21 @@
+<h1>Book edit</h1>
+<b><?=Session::getFlash()?></b><br>
+<form method="post" enctype="multipart/form-data">
+    <input type="text" name="title" value="<?= $form->title ?>"> <br>
+    <input type="text" name="price" value="<?= $form->price ?>"> <br>
+    <select name="style">
+        <?php foreach ($styles as $style): ?>
+            <option value="<?= $style['id'] ?>" <?= $style['id'] == $book['style_id'] ? 'selected' : '' ?> >
+                <?= $style['name'] ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+
+    <textarea name="description"><?= $form->description ?></textarea>
+
+    <input type="hidden" value="1" name="status">
+
+    <input type="file" name="document">
+
+    <button>Go</button>
+</form>

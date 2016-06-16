@@ -33,6 +33,7 @@ class Request
         // if else ?
         return isset($this->post[$key]) ? $this->post[$key] : null;
     }
+    
     public function files($key)
     {
         // if else ?

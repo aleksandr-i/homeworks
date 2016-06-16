@@ -38,11 +38,31 @@ class BookModel
         return $books;
     }
 
+    public function findAdmin($id)
+    {
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->prepare(
+            'SELECT * FROM book WHERE id = :number');
+        $sth->execute(array(
+            'number' => $id
+        ));
+
+        $books = $sth->fetch(PDO::FETCH_ASSOC);
+
+        if (!$books){
+            throw new NotFoundException("Book №{$id} not found");
+        }
+
+        return $books;
+    }
+
     public function findAllAdmin()
     {
         $db = DbConnection::getInstance()->getPdo();
         $sth = $db->query(
-            'SELECT id, title, price FROM book');
+            'SELECT b.id, b.title, b.price, b.status, GROUP_CONCAT(a.name ORDER BY a.name SEPARATOR\', \') AS \'author\' 
+             FROM book b JOIN book_author ba ON b.id = ba.book_id JOIN author a ON a.id = ba.author_id 
+             GROUP BY b.id');
         $books = $sth->fetchAll(PDO::FETCH_ASSOC);
 
         if (!$books){
@@ -55,6 +75,22 @@ class BookModel
     public function count()
     {
         // select count(*) from books
+    }
+
+    public function update(array $book)
+    {
+        //TODO; check if array has keys  'title', 'price', 'etc'.
+
+        $db = DbConnection::getInstance()->getPdo();
+        $sql = 'UPDATE book SET 
+                title = :title, 
+                price = :price, 
+                description = :description, 
+                style_id = :style_id, 
+                status = :status
+                WHERE id = :id';
+        $s = $db->prepare($sql);
+        $s->execute($book);
     }
 
     public function remove($id)

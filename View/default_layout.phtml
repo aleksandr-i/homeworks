@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?=MetaHelper::getTitle();?></title>
+    <title><?= MetaHelper::getTitle(); ?></title>
 </head>
 <body>
 <a href="/">Main</a>
@@ -10,7 +10,7 @@
 <a href="/contact-us">Contact</a>
 <a href="/webroot/index.php?route=cart/index">Cart</a>
 |
-<?php if (!Session::has('user')) :?>
+<?php if (!Session::has('user')) : ?>
     <a href="/login">Login</a>
 <?php else: ?>
     <a href="/logout">Logout</a>
@@ -18,7 +18,7 @@
 |
 <a href="/register">Register</a>
 <hr>
-<?=$content?>
+<?= $content ?>
 <br>
 <br>
 <br>
