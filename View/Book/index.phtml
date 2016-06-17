@@ -1,10 +1,15 @@
-<h1>Book</h1>
+<h1>Books</h1>
 
-<?php foreach ($books as $book):?>
-    Title: <?=$book['title']?><br>
-    Author: <?=$book['author']?> <br>
-    Price: <?=$book['price']?><br>
-    <a href="/book-<?=$book['id']?>.html">Details</a>
-    <hr>
-    
-<?php endforeach; ?>
+<div class="row">
+
+    <?php foreach ($books as $book): ?>
+        <div class="book-item col-sm-6 col-md-3 col-lg-2">
+            Title: <?= $book['title'] ?><br>
+            Author: <?= $book['author'] ?> <br>
+            Price: <?= $book['price'] ?><br>
+            <a href="/book-<?= $book['id'] ?>.html">Details</a>
+            <hr>
+        </div>
+    <?php endforeach; ?>
+
+</div>

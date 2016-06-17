@@ -1,0 +1,16 @@
+*{
+    font-family: Arial;
+}
+
+/*div{*/
+    /*!*color: #4c59ff;*!*/
+    /*padding: 10px 20px ;*/
+/*}*/
+
+.container {
+    width: 1024px;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+
+
