@@ -1,7 +1,31 @@
+<script>
+    function test() {
+        var student = {
+            name: 'Smit',
+            age: 23,
+            city: 'Kiev',
+            status: false,
+
+            study: function () {
+                console.log('Study php');
+            }
+        };
+        student.study();
+    }
+</script>
+
 <h1>Welcome</h1>
 
-<?=$number?><br>
-<?=$name?><br>
+<span onclick="test()"><?=$number?></span><br>
+
+<a href="http://google.com" id="hello" ><?=$name?></a><br>
+
+<script>
+    var element = document.getElementById('hello');
+    element.href = 'http://devionity.com';
+</script>
 Welcome
 Welcome
 Welcome
+
+
