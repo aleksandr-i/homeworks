@@ -1,9 +1,9 @@
 <h1>Book edit</h1>
 <b><?=Session::getFlash()?></b><br>
 <form method="post" enctype="multipart/form-data">
-    <input type="text" name="title" value="<?= $form->title ?>"> <br>
-    <input type="text" name="price" value="<?= $form->price ?>"> <br>
-    <select name="style">
+    Title: <input class="form-control" type="text" name="title" value="<?= $form->title ?>"> <br>
+    Price: <input class="form-control" type="text" name="price" value="<?= $form->price ?>"> <br>
+    Style: <select name="style" class="form-control">
         <?php foreach ($styles as $style): ?>
             <option value="<?= $style['id'] ?>" <?= $style['id'] == $book['style_id'] ? 'selected' : '' ?> >
                 <?= $style['name'] ?>
@@ -11,11 +11,13 @@
         <?php endforeach; ?>
     </select>
 
-    <textarea name="description"><?= $form->description ?></textarea>
+    <br>
+    Description: <textarea class="form-control" name="description"><?= $form->description ?></textarea>
 
     <input type="hidden" value="1" name="status">
 
-    <input type="file" name="document">
+<!--    <input type="file" name="document">-->
 
-    <button>Go</button>
+    <br>
+    <button class="btn btn-success">Go</button>
 </form>

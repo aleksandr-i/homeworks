@@ -3,13 +3,24 @@
 <div class="row">
 
     <?php foreach ($books as $book): ?>
-        <div class="book-item col-sm-6 col-md-3 col-lg-2">
+        <div class="book-item col-sm-6 col-md-3 col-lg-2 col-xs-12">
+            <div>
             Title: <?= $book['title'] ?><br>
             Author: <?= $book['author'] ?> <br>
             Price: <?= $book['price'] ?><br>
             <a href="/book-<?= $book['id'] ?>.html">Details</a>
-            <hr>
+            </div>
+            <img src="/uploads/cat.jpg" alt="" class="img-responsive">
         </div>
     <?php endforeach; ?>
 
 </div>
+
+<!--<script>-->
+<!--    var elements = document.getElementsByTagName('div');-->
+<!--    for (key in elements) {-->
+<!--        elements[key].style.display = 'None';-->
+<!--    }-->
+<!--</script>-->
+
+
