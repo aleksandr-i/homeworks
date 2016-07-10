@@ -14,10 +14,7 @@ class Cart
      */
     function __construct()
     {
-        $this->products = Cookie::get('books') == null ?
-            array()
-            :
-            unserialize(Cookie::get('books'));
+        $this->products = Cookie::get('books') == null ? array() : unserialize(Cookie::get('books'));
     }
 
     /**
