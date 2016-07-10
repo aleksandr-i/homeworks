@@ -1,3 +1,15 @@
 <h1>Cart</h1>
 
-Cart list
+<?php foreach ($books as $book): ?>
+    <div class="book-item col-sm-6 col-md-3 col-lg-2 col-xs-12">
+        Title: <?= $book['title'] ?><br>
+        Price: <?= $book['price'] ?><br>
+        <img src="/uploads/cat.jpg" alt="" class="img-responsive">
+
+    <a href='/cart/delete-<?= $book['id'] ?>'>Delete from cart</a> <br>
+    </div>
+<?php endforeach; ?>
+
+<hr>
+<a href='/cart/clear'>Clear all</a>
+
