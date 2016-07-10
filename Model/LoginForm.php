@@ -25,3 +25,4 @@ class LoginForm
         return $res;
     }
 }
+
